@@ -6,6 +6,7 @@ using Synth.mods.events;
 using Synth.mods.utils;
 using Synth.mods.interactions;
 using System;
+using System.IO;
 using Synth.mods.info;
 
 namespace DeleteSongScript
@@ -16,11 +17,13 @@ namespace DeleteSongScript
         public override void OnModLoaded()
         {
             var deleteButton = ModAssets.Instantiate<GameObject>("DeleteButton_pre");
+            log("DeleteMod loaded");
         }
 
         public override void OnModUnload()
         {
             DeleteButton.DestroyMe();
+            log("DeleteMod unloaded");
         }
 
         public void OnRoomLoaded()
@@ -122,6 +125,19 @@ namespace DeleteSongScript
         public void SetFilterTrackCallback(Action<List<string>, Action, bool> callback)
         {
             
+        }
+
+        public void log(string str)
+        {
+            //get file path
+            var dataPath = Application.dataPath;
+            var filePath = dataPath.Substring(0, dataPath.LastIndexOf('/')) + "/Novalog.txt";
+
+            //write
+            using (var streamWriter = new StreamWriter(filePath, true))
+            {
+                streamWriter.WriteLine(str);
+            }
         }
     }
 }
