@@ -142,14 +142,14 @@ namespace DeleteSongScript
             {
                 if (Tracks[CurrrentSong].isCustomSong)
                 {
-                    Log("Deleting " + Tracks[CurrrentSong].filePath);
+                    log("deleting " + Tracks[CurrrentSong].filePath);
                     File.Delete(Tracks[CurrrentSong].filePath);
                     RefreshCallback(null,true);
                 }
             }
         }
 
-        public static void Log(string str)
+        public static void log(string str)
         {
             //get file path
             var dataPath = Application.dataPath;
@@ -158,7 +158,7 @@ namespace DeleteSongScript
             //write
             using (var streamWriter = new StreamWriter(filePath, true))
             {
-                streamWriter.Write(str);
+                streamWriter.WriteLine(str);
             }
         }
     }
