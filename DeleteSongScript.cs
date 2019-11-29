@@ -142,6 +142,11 @@ namespace DeleteSongScript
 
         }
 
+        public void SetDisableScoreUploadCallback(Action callback)
+        {
+
+        }
+
         public void log(string str)
         {
             //get file path
